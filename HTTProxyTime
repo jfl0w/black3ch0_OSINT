@@ -1,9 +1,15 @@
-# Python script by Marcus Hutchins
-# Crafts two packets, one valid and one invalid, and returns the response time
+# Script by Marcus Hutchins
+# Tests for HTTP proxy even if HTTP requests return 404 response
+# By crafting two HTTP GET requests, one valid and one invalid, and returns the response time
+#
+# The valid request should trigger a 404 error (page not found), followed by a 400 error from the invalid request.
+# Both 404 and 400 pages should have similar response times; however, if we’re dealing with a reverse proxy the timing should differ noticeably. 
+# If we're dealing with a proxy, the valid request is forwarded to the origin but the invalid one isn’t, 
+# thus the invalid request will get a response much faster than the valid request.
+#
 # From MalwareBytes article on C2 Botnet hunting: https://www.malwaretech.com/2017/11/investigating-command-and-control-infrastructure-emotet.html
 #
-#
-#
+
 
 import socket
 import datetime
