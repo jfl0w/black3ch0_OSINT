@@ -1,3 +1,5 @@
+#!/usr/bin/python
+#
 # Script by Marcus Hutchins
 # Tests for HTTP proxy even if HTTP requests return 404 response
 # By crafting two HTTP GET requests, one valid and one invalid, and returns the response time
