@@ -44,8 +44,12 @@
 
 blank_line= echo " "
 
-valid_request= curl -o /dev/null -s -w "VALID RESPONSE:   "%{http_code}\\n"---------------------"\\n"First Byte:  "%{time_pretransfer}\\n"TCP Connect: "%{time_connect}\\n"Total Time:  "%{time_total}\\n $1
+invalid_request= curl -o /dev/null -s -H "Host: " -w "INVALID RESPONSE: "%{http_code}\\n"---------------------"\\n"Total Time:  "%{time_connect}\\n $1 
 
 blank_line= echo " "
 
-invalid_request= curl -o /dev/null -s -H "Host: " -w "INVALID RESPONSE: "%{http_code}\\n"---------------------"\\n"First Byte:  "%{time_pretransfer}\\n"TCP Connect: "%{time_connect}\\n"Total Time:  "%{time_total}\\n $1
+valid_request= curl -o /dev/null -s -w "VALID RESPONSE:   "%{http_code}\\n"---------------------"\\n"Total Time:  "%{time_connect}\\n $1
+
+blank_line= echo " "
+
+valid_request= curl -o /dev/null -s -w "VALID HTTP:    "\\n"-------------------"\\n"TCP Complete: "%{time_connect}\\n"TLS Complete:  "%{time_appconnect}\\n"DNS Resolved:  "%{time_namelookup}\\n"URL:  "%{url}\\n $1
