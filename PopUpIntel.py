@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python
 # Pop Up OSIntel Python: Feed an IP, Url, or hash and browser window opens with tabs ready for analysis. Change OSINT source to those you prefer
 # Run it from the terminal: python PopUpOSINT.py -i <target>
 #
