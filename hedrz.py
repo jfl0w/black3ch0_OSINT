@@ -1,15 +1,22 @@
+#!/usr/bin/python
+# 
+# Simple script to pull HTTP headers from web page
+# Use argument options "--HTTP" "--HTTPS" to pass URLs to the script e.g. "hedrz.py --HTTPS example.com"
+# Use "--ip" to pass IP/Port Combo to the script e.g. "hedrz.py --ip 192.168.1.1:80"
+#
+
 import argparse
 import requests
 
-def scrape_headers(url):
+def scrape_headers(target):
     try:
         # Make an HTTP GET request to the specified URL
-        response = requests.get(url)
+        response = requests.get(target)
 
         # Check if the request was successful (status code 200)
         if response.status_code == 200:
             # Print the headers
-            print("HTTP Headers for", url)
+            print(f"HTTP Headers for {target}")
             print("----------------------")
             for header, value in response.headers.items():
                 print(f"{header}: {value}")
@@ -20,11 +27,27 @@ def scrape_headers(url):
         print(f"Error during HTTP request: {e}")
 
 def main():
-    parser = argparse.ArgumentParser(description="Scrape HTTP headers from a URL or an IP/port combination.")
-    parser.add_argument("target", help="URL or IP/port combination to scrape headers from")
-    
+    parser = argparse.ArgumentParser(description="Scrape HTTP headers from a URL, IP/port combination, or domain.")
+    parser.add_argument("target", help="URL, IP/port combination, or domain to scrape headers from")
+
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--http", action="store_true", help="Use HTTP scheme (http://<target>)")
+    group.add_argument("--https", action="store_true", help="Use HTTPS scheme (https://<target>)")
+    group.add_argument("--ip", action="store_true", help="Assume the target is an IP address (http://<target>)")
+
     args = parser.parse_args()
-    scrape_headers(args.target)
+
+    # Use http, https, or IP/Port Combo based on command-line options
+    if args.https:
+        target = "https://" + args.target
+    elif args.http:
+        target = "http://" + args.target
+    elif args.ip:
+        target = "http://" + args.target
+    else:
+        target = args.target
+
+    scrape_headers(target)
 
 if __name__ == "__main__":
     main()
