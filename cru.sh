@@ -40,9 +40,16 @@
 # lasted.
 #
 # url  - The URL that was fetched. 
-http_code= echo " "
+
+
+blank_line= echo " "
+
 invalid_request= curl -o /dev/null -s -H "Host: " -w "INVALID RESPONSE: "%{http_code}\\n"---------------------"\\n"Total Time:  "%{time_connect}\\n $1 
-http_code= echo " "
+
+blank_line= echo " "
+
 valid_request= curl -o /dev/null -s -w "VALID RESPONSE:   "%{http_code}\\n"---------------------"\\n"Total Time:  "%{time_connect}\\n $1
-http_code= echo " "
-valid_request= curl -o /dev/null -s -w "VALID HTTP:    "\\n"-------------------"\\n"TCP Complete: "%{time_connect}\\n"TLS Complete:  "%{time_appconnect}\\n"DNS Resolved:  "%{time_namelookup}\\n"URL:  "%{url}\\n $1
+
+blank_line= echo " "
+
+valid_request= curl -o /dev/null -s -w "VALID HTTP:    "\\n"---------------------"\\n"TCP Complete: "%{time_connect}\\n"TLS Complete:  "%{time_appconnect}\\n"DNS Resolved:  "%{time_namelookup}\\n $1
