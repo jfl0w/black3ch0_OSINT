@@ -31,9 +31,9 @@ def main():
     parser.add_argument("target", help="URL, IP/port combination, or domain to scrape headers from")
 
     group = parser.add_mutually_exclusive_group()
-    group.add_argument("--http", action="store_true", help="Use HTTP scheme (http://<target>)")
-    group.add_argument("--https", action="store_true", help="Use HTTPS scheme (https://<target>)")
-    group.add_argument("--ip", action="store_true", help="Assume the target is an IP address (http://<target>)")
+    group.add_argument("--http", action="store_true", help="Connect to URL via HTTP (http://<URL>)")
+    group.add_argument("--https", action="store_true", help="Connect to URL via HTTPS (https://<URL>)")
+    group.add_argument("--ip", action="store_true", help="Connect to IP/Port combo (<IP:Port>)")
 
     args = parser.parse_args()
 
