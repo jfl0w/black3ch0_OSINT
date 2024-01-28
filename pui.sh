@@ -1,7 +1,8 @@
 #!bin/bash
+# quick Pop Up OSINT script: Feed an IP, Url, or hash and browser window opens with tabs ready for analysis
 #
-url_reg="[-A-Za-z0-9\+&@#/%?=~_|!:,.;]\.[-A-Za-z0-9\+&@#/%=~_|]"
 
+url_reg="[-A-Za-z0-9\+&@#/%?=~_|!:,.;]\.[-A-Za-z0-9\+&@#/%=~_|]"
 
 while getopts ":iuh:" option; do
    case $option in
