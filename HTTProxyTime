@@ -10,7 +10,7 @@
 # thus the invalid request will get a response much faster than the valid request.
 #
 # From MalwareBytes article on C2 Botnet hunting: https://www.malwaretech.com/2017/11/investigating-command-and-control-infrastructure-emotet.html
-#
+# Usage: python proxy-detect.py --host <IP Address>:<Port>
 
 
 import socket
